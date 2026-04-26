@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Responsive Grid Architecture | Project 1</title>
+    <meta name="description" content="A responsive frontend interface honoring the Mobile-First paradigm.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Montserrat (Headlines) and Roboto (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header with Branding and Wayfinding -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="#">Decode Labs</a>
+            </div>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button class="menu-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="site-nav" id="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#vision">Vision</a></li>
+                    <li><a href="#toolkit">Toolkit</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Core Narrative -->
+    <main class="site-main">
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h1>Architecting for the Mobile Web</h1>
+                <p class="subtitle">Construct a digital experience that honors the Mobile-First paradigm.</p>
+                <a href="#about" class="btn btn-primary">Discover More</a>
+            </div>
+        </section>
+
+        <!-- Sidebar and Main Content layout using CSS Grid -->
+        <div class="content-grid container">
+            <aside class="sidebar">
+                <h2>The Philosophy</h2>
+                <p>The web is a dynamic, inclusive information system.</p>
+                <ul class="sidebar-list">
+                    <li>Semantic Integrity</li>
+                    <li>2025 UI/UX Compliance</li>
+                    <li>Universal Access (WCAG)</li>
+                </ul>
+            </aside>
+
+            <div class="main-content">
+                <article id="about" class="content-article">
+                    <h2>The Blueprint</h2>
+                    <p>Design is an iterative process that blends precision with empathy. We use Empathy Maps to uncover user pain points. We do not guess; we research.</p>
+                </article>
+
+                <article id="vision" class="content-article">
+                    <h2>Visual Design & Aesthetics</h2>
+                    <p>Shift from sterile tech to Warmth & Grounding. Emphasizing Mocha Mousse for stability, Ethereal Blue for trust, and Moonlit Grey for refinement.</p>
+                </article>
+
+                <article id="toolkit" class="content-article">
+                    <h2>The Toolkit: Your Raw Materials</h2>
+                    <div class="toolkit-grid">
+                        <div class="tool-card">
+                            <h3>HTML5</h3>
+                            <p>Semantic landmarks and structural meaning. Not just divs, but the right element for the right job.</p>
+                        </div>
+                        <div class="tool-card">
+                            <h3>CSS3</h3>
+                            <p>Responsive styling using Grid, Flexbox, and Container Queries.</p>
+                        </div>
+                        <div class="tool-card">
+                            <h3>JavaScript</h3>
+                            <p>Basic state management and interactive functionality.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Terminal Metadata -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Decode Labs. The Future of Digital Craft.</p>
+            <nav class="footer-nav">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
