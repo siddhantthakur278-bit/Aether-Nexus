@@ -1,0 +1,285 @@
+/* --- CSS Variables & 2025 Aesthetics --- */
+:root {
+    /* 2025 Palette */
+    --clr-mocha-mousse: #A5956F;
+    --clr-ethereal-blue: #A0D4E0;
+    --clr-moonlit-grey: #F2F0EA;
+    --clr-dark-text: #2D2D2D;
+    --clr-white: #FFFFFF;
+
+    /* Typography */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+
+    /* Fluid Typography using clamp() */
+    --fs-h1: clamp(2rem, 5vw, 3.5rem);
+    --fs-h2: clamp(1.5rem, 4vw, 2.5rem);
+    --fs-h3: clamp(1.2rem, 3vw, 1.75rem);
+    --fs-body: clamp(1rem, 2vw, 1.125rem);
+    
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 4rem;
+}
+
+/* --- Reset & Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    color: var(--clr-dark-text);
+    background-color: var(--clr-moonlit-grey);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-md);
+    color: var(--clr-dark-text);
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+a {
+    text-decoration: none;
+    color: var(--clr-mocha-mousse);
+    transition: color 0.3s ease;
+}
+
+a:hover, a:focus {
+    color: var(--clr-dark-text);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Utility Classes --- */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--clr-mocha-mousse);
+    color: var(--clr-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--clr-dark-text);
+    color: var(--clr-white);
+    transform: translateY(-2px);
+}
+
+/* --- Micro Layouts (Flexbox) --- */
+/* Header & Navigation */
+.site-header {
+    background-color: var(--clr-white);
+    padding: var(--spacing-md) 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo a {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--clr-dark-text);
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.nav-links a {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--clr-dark-text);
+}
+
+.nav-links a:hover {
+    color: var(--clr-mocha-mousse);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger {
+    width: 25px;
+    height: 3px;
+    background-color: var(--clr-dark-text);
+    transition: all 0.3s ease;
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: var(--clr-ethereal-blue);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.hero-section .subtitle {
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.25rem;
+}
+
+/* --- Macro Layouts (CSS Grid) --- */
+/* Mobile-First Grid: 1 Column */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+}
+
+.sidebar {
+    background-color: var(--clr-white);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.sidebar-list li {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--clr-moonlit-grey);
+}
+
+.sidebar-list li:last-child {
+    border-bottom: none;
+}
+
+.content-article {
+    background-color: var(--clr-white);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.toolkit-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.tool-card {
+    background-color: var(--clr-moonlit-grey);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    border-left: 4px solid var(--clr-ethereal-blue);
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--clr-dark-text);
+    color: var(--clr-moonlit-grey);
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+    margin-top: auto;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.footer-nav a {
+    color: var(--clr-ethereal-blue);
+}
+
+/* --- Media Queries (Progressive Enhancement) --- */
+
+/* Mobile Navigation Setup */
+@media (max-width: 767px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .site-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--clr-white);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: var(--spacing-md) 0;
+    }
+
+    .site-nav.active {
+        display: block;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-md);
+    }
+}
+
+/* Tablet: 768px */
+@media (min-width: 768px) {
+    .toolkit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop: 1024px */
+@media (min-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 300px 1fr;
+        align-items: start;
+    }
+
+    .toolkit-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
