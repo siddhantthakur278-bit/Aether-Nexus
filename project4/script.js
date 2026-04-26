@@ -107,16 +107,44 @@ document.addEventListener('DOMContentLoaded', () => {
         errors[field].textContent = '';
     }
 
-    function executeRegistration() {
+    async function executeRegistration() {
         const btn = document.querySelector('.btn-submit');
-        btn.innerHTML = '<span class="btn-text">Processing Payload...</span>';
+        const btnText = btn.querySelector('.btn-text');
+        
+        btnText.textContent = 'Transmitting to Gateway...';
         btn.disabled = true;
 
-        // Simulate Neural Persistence Delay
-        setTimeout(() => {
+        const payload = {
+            name: fields.name.value,
+            email: fields.email.value,
+            password: fields.password.value,
+            passwordConfirm: fields.confirm.value
+        };
+
+        try {
+            const response = await fetch('http://localhost:3000/api/v1/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Transmission Failed');
+            }
+
+            // Success Transition
             form.classList.add('hidden');
             successState.classList.remove('hidden');
-        }, 1500);
+            
+        } catch (err) {
+            btnText.textContent = 'Execute Registration';
+            btn.disabled = false;
+            showError('confirm', `Gateway Error: ${err.message}`);
+        }
     }
 
     // Real-time Inspection

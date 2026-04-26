@@ -19,24 +19,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (result.status === 'success') {
                 const { data } = result;
-                
-                // Update UI with real data
                 if (latencyEl) latencyEl.textContent = data.latency;
                 if (usersEl) usersEl.textContent = data.totalUsers;
                 if (resilienceEl) resilienceEl.textContent = data.status === 'Healthy' ? 'Active' : 'Warning';
-                
-                console.log('Architectural stats synchronized.');
             }
         } catch (error) {
-            console.error('Failed to pulse system stats:', error);
             if (latencyEl) latencyEl.textContent = 'Offline';
             if (resilienceEl) resilienceEl.textContent = 'Critical';
         }
     }
 
+    async function fetchTaskEngineStatus() {
+        const p3El = document.getElementById('stat-p3');
+        try {
+            const response = await fetch('http://localhost:3001/health');
+            if (response.ok) {
+                if (p3El) {
+                    p3El.textContent = 'ONLINE';
+                    p3El.style.color = '#A0D4E0';
+                }
+            }
+        } catch (error) {
+            if (p3El) {
+                p3El.textContent = 'OFFLINE';
+                p3El.style.color = '#D9534F';
+            }
+        }
+    }
+
     // Initial fetch and periodic pulse (every 10 seconds)
     fetchSystemStats();
+    fetchTaskEngineStatus();
     setInterval(fetchSystemStats, 10000);
+    setInterval(fetchTaskEngineStatus, 15000);
 
     // Simple Navbar Interactivity
     const navLinks = document.querySelectorAll('.sidebar-nav a');
