@@ -28,3 +28,24 @@ exports.protect = (req, res, next) => {
   // Next middleware
   next();
 };
+
+/**
+ * Authorization middleware for specific roles
+ * Checks if user role is included in allowed roles
+ */
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    // req.user would be populated by protect middleware in a real app
+    // For this mock, we'll assume the user role is passed in headers or fixed
+    const userRole = req.headers['x-user-role'] || 'user';
+
+    if (!roles.includes(userRole)) {
+      return res.status(403).json({
+        status: 'fail',
+        message: 'You do not have permission to perform this action'
+      });
+    }
+
+    next();
+  };
+};
