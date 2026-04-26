@@ -4,10 +4,12 @@ const taskSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'A task must have a title'],
-    trim: true
+    trim: true,
+    minlength: [5, 'Task title must be at least 5 characters']
   },
   status: {
     type: String,
+    required: [true, 'A task must have a status'],
     enum: ['todo', 'in-progress', 'completed'],
     default: 'todo'
   },

@@ -1,12 +1,12 @@
-const express = require('express');
 const projectController = require('../controllers/projectController');
+const { validateProjectBody } = require('../middlewares/validationMiddleware');
 
 const router = express.Router();
 
 router
   .route('/')
   .get(projectController.getAllProjects)
-  .post(projectController.createProject);
+  .post(validateProjectBody, projectController.createProject);
 
 router
   .route('/:id')
