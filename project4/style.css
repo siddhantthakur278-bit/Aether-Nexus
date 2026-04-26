@@ -1,0 +1,181 @@
+:root {
+    --mocha: #A5956F;
+    --ethereal: #A0D4E0;
+    --moonlit: #F2F0EA;
+    --deep-brain: #1A2238;
+    --error-red: #D9534F;
+    --success-green: #5CB85C;
+    --glass: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--deep-brain);
+    background-image: radial-gradient(circle at top right, rgba(165, 149, 111, 0.1), transparent),
+                      radial-gradient(circle at bottom left, rgba(160, 212, 224, 0.1), transparent);
+    color: var(--moonlit);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header .logo {
+    color: var(--mocha);
+    letter-spacing: 4px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.auth-header h1 {
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+.auth-header p {
+    opacity: 0.6;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.auth-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--mocha);
+}
+
+input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 14px 18px;
+    border-radius: 12px;
+    color: white;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--ethereal);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 15px rgba(160, 212, 224, 0.1);
+}
+
+input.invalid {
+    border-color: var(--error-red);
+}
+
+.error-message {
+    font-size: 0.7rem;
+    color: var(--error-red);
+    margin-top: 5px;
+    display: block;
+    height: 12px;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    background: var(--mocha);
+    color: var(--deep-brain);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(165, 149, 111, 0.2);
+    filter: brightness(1.1);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+.password-meter {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.meter-bar {
+    height: 100%;
+    width: 0%;
+    transition: all 0.5s ease;
+    background: var(--error-red);
+}
+
+.hidden {
+    display: none;
+}
+
+#success-state {
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: var(--success-green);
+    margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--mocha);
+    color: var(--mocha);
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+}
