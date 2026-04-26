@@ -2,23 +2,19 @@ const User = require('../models/userModel');
 
 /**
  * 1. GET ALL USERS (Read)
- * Implements pagination with limit & offset
  */
 exports.getAllUsers = async (req, res, next) => {
   try {
     const limit = parseInt(req.query.limit, 10) || 10;
     const offset = parseInt(req.query.offset, 10) || 0;
 
-    const { data: users, total } = User.findAll(offset, limit);
+    const users = await User.find().skip(offset).limit(limit);
+    const total = await User.countDocuments();
 
     res.status(200).json({
       status: 'success',
       results: users.length,
-      pagination: {
-        total,
-        offset,
-        limit
-      },
+      pagination: { total, offset, limit },
       data: { users }
     });
   } catch (error) {
@@ -31,7 +27,7 @@ exports.getAllUsers = async (req, res, next) => {
  */
 exports.getUserById = async (req, res, next) => {
   try {
-    const user = User.findById(req.params.id);
+    const user = await User.findById(req.params.id);
 
     if (!user) {
       return res.status(404).json({
@@ -54,15 +50,7 @@ exports.getUserById = async (req, res, next) => {
  */
 exports.createUser = async (req, res, next) => {
   try {
-    const existingUser = User.findByEmail(req.body.email);
-    if (existingUser) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'User with this email already exists'
-      });
-    }
-
-    const newUser = User.create(req.body);
+    const newUser = await User.create(req.body);
 
     res.status(201).json({
       status: 'success',
@@ -78,7 +66,10 @@ exports.createUser = async (req, res, next) => {
  */
 exports.updateUser = async (req, res, next) => {
   try {
-    const updatedUser = User.update(req.params.id, req.body);
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
 
     if (!updatedUser) {
       return res.status(404).json({
@@ -101,9 +92,9 @@ exports.updateUser = async (req, res, next) => {
  */
 exports.deleteUser = async (req, res, next) => {
   try {
-    const deleted = User.delete(req.params.id);
+    const user = await User.findByIdAndDelete(req.params.id);
 
-    if (!deleted) {
+    if (!user) {
       return res.status(404).json({
         status: 'fail',
         message: 'No user found with that ID'
