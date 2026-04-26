@@ -97,11 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function showError(field, message) {
         fields[field].classList.add('invalid');
+        fields[field].setAttribute('aria-invalid', 'true');
         errors[field].textContent = message;
     }
 
     function clearError(field) {
         fields[field].classList.remove('invalid');
+        fields[field].setAttribute('aria-invalid', 'false');
         errors[field].textContent = '';
     }
 

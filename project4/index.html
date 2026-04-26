@@ -19,29 +19,33 @@
             <form id="registration-form" novalidate>
                 <div class="form-group">
                     <label for="full-name">Full Name</label>
-                    <input type="text" id="full-name" name="name" placeholder="Enter architectural name" required minlength="3">
-                    <span class="error-message" id="name-error"></span>
+                    <input type="text" id="full-name" name="name" placeholder="Enter architectural name" 
+                           required minlength="3" aria-describedby="name-error" aria-invalid="false">
+                    <span class="error-message" id="name-error" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Security Email</label>
-                    <input type="email" id="email" name="email" placeholder="email@decodelabs.com" required>
-                    <span class="error-message" id="email-error"></span>
+                    <input type="email" id="email" name="email" placeholder="email@decodelabs.com" 
+                           required aria-describedby="email-error" aria-invalid="false">
+                    <span class="error-message" id="email-error" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Access Password</label>
-                    <input type="password" id="password" name="password" placeholder="••••••••" required>
-                    <div class="password-meter">
+                    <input type="password" id="password" name="password" placeholder="••••••••" 
+                           required aria-describedby="password-error" aria-invalid="false">
+                    <div class="password-meter" aria-hidden="true">
                         <div class="meter-bar"></div>
                     </div>
-                    <span class="error-message" id="password-error"></span>
+                    <span class="error-message" id="password-error" aria-live="polite"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="confirm-password">Confirm Access</label>
-                    <input type="password" id="confirm-password" name="confirm" placeholder="••••••••" required>
-                    <span class="error-message" id="confirm-error"></span>
+                    <input type="password" id="confirm-password" name="confirm" placeholder="••••••••" 
+                           required aria-describedby="confirm-error" aria-invalid="false">
+                    <span class="error-message" id="confirm-error" aria-live="polite"></span>
                 </div>
 
                 <button type="submit" class="btn-submit">
@@ -49,7 +53,7 @@
                     <div class="btn-loader"></div>
                 </button>
             </form>
-            <div id="success-state" class="hidden">
+            <div id="success-state" class="hidden" role="alert" aria-live="assertive">
                 <div class="success-icon">✓</div>
                 <h2>Registration Approved</h2>
                 <p>Identity persisted to the Neural Core.</p>
