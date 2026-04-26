@@ -1,60 +1,47 @@
-const { v4: uuidv4 } = require('uuid');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
-/**
- * Mock User Model representing the "Noun" in our RESTful system.
- * In a production app, this would be a Mongoose or Sequelize model.
- */
-class UserModel {
-  constructor() {
-    this.users = [
-      { id: uuidv4(), name: 'John Doe', email: 'john@example.com', age: 28, role: 'user', createdAt: new Date().toISOString() },
-      { id: uuidv4(), name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'admin', createdAt: new Date().toISOString() },
-      { id: uuidv4(), name: 'Sam Green', email: 'sam@example.com', age: 22, role: 'user', createdAt: new Date().toISOString() },
-      { id: uuidv4(), name: 'Martina Plantijn', email: 'martina@example.com', age: 30, role: 'admin', createdAt: new Date().toISOString() }
-    ];
+const userSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'Please tell us your name!']
+  },
+  email: {
+    type: String,
+    required: [true, 'Please provide your email'],
+    unique: true,
+    lowercase: true
+  },
+  role: {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user'
+  },
+  password: {
+    type: String,
+    required: [true, 'Please provide a password'],
+    minlength: 8,
+    select: false
+  },
+  age: Number,
+  createdAt: {
+    type: Date,
+    default: Date.now()
   }
+});
 
-  findAll(offset = 0, limit = 10) {
-    return {
-      data: this.users.slice(offset, offset + limit),
-      total: this.users.length
-    };
-  }
+// Hash password before saving
+userSchema.pre('save', async function(next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 12);
+  next();
+});
 
-  findById(id) {
-    return this.users.find(u => u.id === id);
-  }
+// Instance method to check if password is correct
+userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
 
-  findByEmail(email) {
-    return this.users.find(u => u.email === email);
-  }
+const User = mongoose.model('User', userSchema);
 
-  create(userData) {
-    const newUser = {
-      id: uuidv4(),
-      ...userData,
-      role: userData.role || 'user',
-      createdAt: new Date().toISOString()
-    };
-    this.users.push(newUser);
-    return newUser;
-  }
-
-  update(id, updateData) {
-    const index = this.users.findIndex(u => u.id === id);
-    if (index === -1) return null;
-
-    this.users[index] = { ...this.users[index], ...updateData };
-    return this.users[index];
-  }
-
-  delete(id) {
-    const index = this.users.findIndex(u => u.id === id);
-    if (index === -1) return false;
-
-    this.users.splice(index, 1);
-    return true;
-  }
-}
-
-module.exports = new UserModel();
+module.exports = User;
