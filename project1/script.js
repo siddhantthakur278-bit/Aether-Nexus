@@ -1,64 +1,49 @@
 /**
- * Decode Labs Intern Portal
- * Basic State Management & Interactivity
+ * Decode Labs Gateway Framework
+ * Live Dashboard Integration
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Select the sidebar toggle button and the sidebar
-    const sidebarToggleBtn = document.getElementById('sidebar-toggle');
-    const appSidebar = document.getElementById('app-sidebar');
-    
-    // State to track if the sidebar is open or closed on mobile
-    let isSidebarOpen = false;
+    // Selectors for Vital Signs
+    const latencyEl = document.getElementById('stat-latency');
+    const usersEl = document.getElementById('stat-users');
+    const resilienceEl = document.getElementById('stat-resilience');
 
-    // Toggle sidebar on mobile
-    sidebarToggleBtn.addEventListener('click', () => {
-        isSidebarOpen = !isSidebarOpen;
-        
-        // Update DOM state
-        if (isSidebarOpen) {
-            appSidebar.classList.add('open');
-            sidebarToggleBtn.setAttribute('aria-expanded', 'true');
-        } else {
-            appSidebar.classList.remove('open');
-            sidebarToggleBtn.setAttribute('aria-expanded', 'false');
+    /**
+     * Fetch System Stats from Project 2 API
+     */
+    async function fetchSystemStats() {
+        try {
+            const response = await fetch('http://localhost:3000/api/v1/stats');
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                const { data } = result;
+                
+                // Update UI with real data
+                if (latencyEl) latencyEl.textContent = data.latency;
+                if (usersEl) usersEl.textContent = data.totalUsers;
+                if (resilienceEl) resilienceEl.textContent = data.status === 'Healthy' ? 'Active' : 'Warning';
+                
+                console.log('Architectural stats synchronized.');
+            }
+        } catch (error) {
+            console.error('Failed to pulse system stats:', error);
+            if (latencyEl) latencyEl.textContent = 'Offline';
+            if (resilienceEl) resilienceEl.textContent = 'Critical';
         }
-    });
+    }
 
-    // Close sidebar when a navigation link is clicked (useful on mobile)
-    const navLinks = appSidebar.querySelectorAll('a');
+    // Initial fetch and periodic pulse (every 10 seconds)
+    fetchSystemStats();
+    setInterval(fetchSystemStats, 10000);
+
+    // Simple Navbar Interactivity
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            // Remove active class from all links
-            navLinks.forEach(l => {
-                l.classList.remove('active');
-                l.removeAttribute('aria-current');
-            });
-            
-            // Add active class to clicked link
+            navLinks.forEach(l => l.classList.remove('active'));
             e.currentTarget.classList.add('active');
-            e.currentTarget.setAttribute('aria-current', 'page');
-
-            // Close sidebar on mobile
-            if (window.innerWidth < 1024 && isSidebarOpen) {
-                isSidebarOpen = false;
-                appSidebar.classList.remove('open');
-                sidebarToggleBtn.setAttribute('aria-expanded', 'false');
-            }
         });
-    });
-
-    // Close sidebar when clicking outside of it on mobile
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth < 1024 && isSidebarOpen) {
-            const isClickInsideSidebar = appSidebar.contains(e.target);
-            const isClickOnToggle = sidebarToggleBtn.contains(e.target);
-            
-            if (!isClickInsideSidebar && !isClickOnToggle) {
-                isSidebarOpen = false;
-                appSidebar.classList.remove('open');
-                sidebarToggleBtn.setAttribute('aria-expanded', 'false');
-            }
-        }
     });
 });
