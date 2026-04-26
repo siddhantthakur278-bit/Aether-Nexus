@@ -38,3 +38,36 @@ exports.getProject = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.updateProject = async (req, res, next) => {
+  try {
+    const project = await Project.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true
+    });
+
+    if (!project) return res.status(404).json({ status: 'fail', message: 'No project found' });
+
+    res.status(200).json({
+      status: 'success',
+      data: { project }
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.deleteProject = async (req, res, next) => {
+  try {
+    const project = await Project.findByIdAndDelete(req.params.id);
+
+    if (!project) return res.status(404).json({ status: 'fail', message: 'No project found' });
+
+    res.status(204).json({
+      status: 'success',
+      data: null
+    });
+  } catch (err) {
+    next(err);
+  }
+};

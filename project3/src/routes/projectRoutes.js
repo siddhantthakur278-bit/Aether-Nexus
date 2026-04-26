@@ -10,6 +10,8 @@ router
 
 router
   .route('/:id')
-  .get(projectController.getProject);
+  .get(projectController.getProject)
+  .patch(projectController.updateProject)
+  .delete(projectController.deleteProject);
 
 module.exports = router;
