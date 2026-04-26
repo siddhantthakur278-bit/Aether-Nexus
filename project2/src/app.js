@@ -12,6 +12,7 @@ const rateLimiter = require('./middlewares/rateLimitMiddleware');
 
 // Routes
 const userRoutes = require('./routes/userRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api', rateLimiter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // 3. API Routes
+app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
 
 // Health check endpoint
