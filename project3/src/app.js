@@ -16,8 +16,9 @@ app.get('/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'Project 3 (Task Engine) is healthy' });
 });
 
-// 3. API Routes (To be added)
-// app.use('/api/v1/projects', projectRoutes);
+// 3. API Routes
+const projectRoutes = require('./routes/projectRoutes');
+app.use('/api/v1/projects', projectRoutes);
 
 // 4. Global Error Handler
 app.use((err, req, res, next) => {
