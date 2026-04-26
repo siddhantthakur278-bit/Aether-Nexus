@@ -1,22 +1,21 @@
-# Project 4: Form Design & Validation
+# Project 4: Identity Gateway (Secure Registration)
 
-Engineering the **Architecture of Trust** through high-fidelity form design and intelligent inspection.
+The frontline interface for the **Decode Labs** ecosystem, engineered to implement the **Architecture of Trust**.
 
 ## 🏗️ The IPO Pipeline
-This project implements the full **Input-Process-Output** model as defined in the architectural slides:
-1. **Stage 1: Input (The Structure)**: Built using the **Semantic Skeleton** pattern, ensuring proper use of `<form>`, `<label>`, and `<input>` tags for maximum accessibility.
-2. **Stage 2: Process (The Gatekeeper)**: Advanced JavaScript logic using **The Regex Inspector** to enforce strict data patterns.
-3. **Stage 3: Output (The Communicator)**: Dynamic UI feedback with branded error states and success transitions.
+1. **Input (Structure)**: A semantic skeleton built with HTML5. No "haphazard divs"—only strict `<form>`, `<label>`, and `<input>` tags.
+2. **Process (The Gatekeeper)**: Advanced JavaScript logic gates and **Regex Inspectors** that screen every character.
+3. **Output (The Communicator)**: Dynamic, accessible UI feedback linked through the **Accessibility Tether**.
 
-## 🛡️ Security Features
-- **Strict Password Policy**: Regex-based enforcement of complexity (Uppercase, Lowercase, Number, Symbol, 8+ chars).
-- **The Default Threat Overridden**: Custom `preventDefault()` logic to stop uncontrolled page refreshes and preserve application state.
-- **Email Reality Check**: Syntax-based validation using RFC 5322 standards.
+## 🛡️ Secure Engineering
+- **Strict Password Policy**: A multi-stage regex ensuring Uppercase, Lowercase, Number, and Special Character complexity.
+- **The Shield (preventDefault)**: Custom logic to override the "Default Threat" of uncontrolled browser refreshes, preserving the "Identity Payload."
+- **ARIA Tethers**: Fully accessible error states using `aria-describedby` and `aria-live="polite"` to ensure no user is left behind.
 
-## 🎨 Design Excellence
-- **Palette**: Mocha Mousse (#A5956F) and Ethereal Blue (#A0D4E0).
-- **Aesthetic**: Glassmorphism with real-time feedback (Password Strength Meter).
-- **Interactivity**: Fluid transitions and micro-animations on error/success states.
+## 🕸️ Ecosystem Fusion
+This interface is the **Frontline of Authentication**:
+- **Gateway Integration**: Successfully transmits validated payloads to the **Project 2 API** via a live `fetch` bridge.
+- **Command Center Bridge**: Includes a navigation tether to return the user to the **Project 1 Dashboard**.
 
 ## 🚀 Execution
-Open `index.html` in any modern browser to interact with the registration interface.
+Open `index.html` in a modern browser. Ensure **Project 2** is running on Port 3000 for the Identity Fusion (Signup) to persist data to the Cloud.

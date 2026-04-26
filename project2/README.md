@@ -1,37 +1,26 @@
 # Project 2: The Brain Stem (API Gateway)
 
-The central processing hub for the Decode Labs ecosystem, enforcing security and architectural rules.
+The central intelligence and security node of **Decode Labs**. This project implements the **Gatekeeper Protocol** to protect the ecosystem from the "Default Threat."
 
-## 🛡️ The Gatekeeper Flow
-All requests pass through a multi-layered security and validation pipeline before reaching the core logic.
+## 🛡️ The Gatekeeper Protocol
+1. **AuthN (Authentication)**: Secure identity verification using **JWT (JSON Web Tokens)** and **Bcrypt** password hashing.
+2. **AuthZ (Authorization)**: Role-Based Access Control (RBAC) ensuring only "Admin" identities can modify core blueprints.
+3. **Syntactic Validation**: Utilizing **Joi** at the perimeter to inspect every incoming payload for structural integrity.
+4. **Rate Limiting**: Defending the "Brain Stem" against brute-force attacks and volumetric floods.
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Gateway as Project 2
-    participant DB as MongoDB Atlas
+## ⚙️ Core Modules
+- **`authController`**: Manages the "Identity Fusion" process (Signup/Login).
+- **`userRoutes`**: Secure endpoints for managing digital personas.
+- **`statsRoutes`**: Telemetry provider for the Project 1 Dashboard.
+- **`errorMiddleware`**: Centralized resilience engine to handle system anomalies gracefully.
 
-    Client->>Gateway: REST Request (Noun + Verb)
-    Gateway->>Gateway: Rate Limiter (429 Check)
-    Gateway->>Gateway: Syntactic Validation (Joi)
-    Gateway->>Gateway: AuthN (JWT Verify)
-    Gateway->>Gateway: AuthZ (Role Check)
-    Gateway->>DB: Database Operation
-    DB-->>Gateway: Result
-    Gateway-->>Client: Semantic Status Code (201, 204, etc.)
-```
-
-## 🧩 Key Components
-- **Routes**: RESTful naming conventions (Resources as Nouns).
-- **Middlewares**: Helmet (Security), Morgan (Logging), Rate Limit (Resilience).
-- **Controllers**: Logic separation (Auth, User, Stats).
-- **Models**: Mongoose schemas with password hashing.
-
-## 📜 Documentation
-Interactive Swagger documentation is available at:
+## 📜 Blueprint (Documentation)
+Standardized OpenAPI documentation available via Swagger:
 `http://localhost:3000/api-docs`
 
-## 🚀 Setup
-1. `npm install`
-2. Create `.env` (refer to `.env.example`)
-3. `npm run dev`
+## 🚀 Execution
+```bash
+npm install
+npm run dev
+```
+Requires a `.env` file with `MONGODB_URI` and `JWT_SECRET` configured for Cloud Node connectivity.
