@@ -18,7 +18,10 @@ app.get('/health', (req, res) => {
 
 // 3. API Routes
 const projectRoutes = require('./routes/projectRoutes');
+const taskRoutes = require('./routes/taskRoutes');
+
 app.use('/api/v1/projects', projectRoutes);
+app.use('/api/v1/tasks', taskRoutes);
 
 // 4. Global Error Handler
 app.use((err, req, res, next) => {
