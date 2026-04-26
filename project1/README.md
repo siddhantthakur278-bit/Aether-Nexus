@@ -1,6 +1,6 @@
 # Project 1: The Command Center (Dashboard)
 
-The visual interface of the **Decode Labs** ecosystem. This dashboard provides real-time visibility into the "Nervous System" of our distributed services.
+The visual interface of the **AETHER NEXUS** ecosystem. This dashboard provides real-time visibility into the "Nervous System" of our distributed services.
 
 ## 🎨 Design System: Mocha Mousse
 Built with a premium, state-of-the-art aesthetic:

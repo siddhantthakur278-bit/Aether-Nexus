@@ -1,6 +1,6 @@
 # Project 4: Identity Gateway (Secure Registration)
 
-The frontline interface for the **Decode Labs** ecosystem, engineered to implement the **Architecture of Trust**.
+The frontline interface for the **AETHER NEXUS** ecosystem, engineered to implement the **Architecture of Trust**.
 
 ## 🏗️ The IPO Pipeline
 This interface transforms raw human input into secure architectural payloads.

@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Decode Labs | Neural Task Engine (Project 3)
+  title: Aether Nexus | Neural Task Engine (Project 3)
   version: 1.0.0
   description: High-performance microservice for Relational Geometry and State Persistence.
 

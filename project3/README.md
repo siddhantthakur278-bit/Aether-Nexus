@@ -1,6 +1,6 @@
 # Project 3: The Neural Task Engine
 
-A specialized microservice for **Decode Labs** focused on **Relational Geometry** and state persistence.
+A specialized microservice for **AETHER NEXUS** focused on **Relational Geometry** and state persistence.
 
 ## 🏛️ Architectural Pillars
 1. **The Blueprint**: Precise Mongoose schemas with relational linking.

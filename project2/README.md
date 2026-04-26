@@ -1,6 +1,6 @@
 # Project 2: The Brain Stem (API Gateway)
 
-The central intelligence and security node of **Decode Labs**. This project implements the **Gatekeeper Protocol** to protect the ecosystem from the "Default Threat."
+The central intelligence and security node of **AETHER NEXUS**. This project implements the **Gatekeeper Protocol** to protect the ecosystem from the "Default Threat."
 
 ## 🛡️ The Gatekeeper Protocol
 This service implements a multi-layered perimeter defense strategy to protect the ecosystem.

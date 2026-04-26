@@ -1,9 +1,9 @@
-# Decode Labs | The Nervous System Ecosystem
+# AETHER NEXUS | The Ethereal Neural Ecosystem
 
-Welcome to the **Decode Labs** strategic execution framework. This repository is a high-fidelity, full-stack ecosystem designed to demonstrate modern architectural principles: **Identity, Persistence, Security, and Visibility.**
+Welcome to **AETHER NEXUS**, a state-of-the-art, high-performance execution framework. This repository is a high-fidelity, full-stack masterpiece designed to synchronize **Identity, Intelligence, and Visual Excellence.**
 
-## 🌌 The Ecosystem Architecture
-Decode Labs is composed of four specialized, interconnected nodes:
+## 🌌 The Celestial Architecture
+AETHER NEXUS is composed of four specialized, interconnected nodes that pulse with architectural integrity:
 
 1.  **[Project 1: Command Center (Dashboard)](./project1/)**: The visual monitor for system "Vital Signs."
 2.  **[Project 2: The Brain Stem (API Gateway)](./project2/)**: The central intelligence node handling AuthN, AuthZ, and Perimeter Defense.
@@ -33,4 +33,4 @@ graph TD
 - **Security**: JWT (Stateless Identity), Bcrypt (Hashing), Helmet (Headers), Joi (Validation).
 
 ---
-© 2025 Decode Labs | Engineering the Architecture of Trust.
+© 2025 AETHER NEXUS | Engineering the Architecture of Trust.

@@ -1,5 +1,5 @@
 /**
- * Decode Labs Gateway Framework
+ * Aether Nexus Gateway Framework
  * Live Dashboard Integration
  */
 

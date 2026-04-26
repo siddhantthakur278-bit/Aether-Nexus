@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
-  title: Decode Labs API
-  description: API documentation for Decode Labs project
+  title: Aether Nexus API
+  description: API documentation for Aether Nexus project
   version: 1.0.0
 servers:
   - url: http://localhost:3000/api/v1
