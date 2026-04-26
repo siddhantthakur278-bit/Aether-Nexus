@@ -2,6 +2,11 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const path = require('path');
+
+const swaggerDocument = YAML.load(path.join(__dirname, '../docs/swagger.yaml'));
 
 const app = express();
 
@@ -15,6 +20,9 @@ app.use(morgan('dev'));
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'Project 3 (Task Engine) is healthy' });
 });
+
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // 3. API Routes
 const projectRoutes = require('./routes/projectRoutes');

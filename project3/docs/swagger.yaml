@@ -1,0 +1,60 @@
+openapi: 3.0.0
+info:
+  title: Decode Labs | Neural Task Engine (Project 3)
+  version: 1.0.0
+  description: High-performance microservice for Relational Geometry and State Persistence.
+
+servers:
+  - url: http://localhost:3001/api/v1
+    description: Development Server
+
+paths:
+  /projects:
+    get:
+      summary: Fetch all projects
+      tags: [Projects]
+      responses:
+        200:
+          description: List of projects
+    post:
+      summary: Create a new project (The Action)
+      tags: [Projects]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, description, owner]
+              properties:
+                name: { type: string, example: "Neural Core Alpha" }
+                description: { type: string, example: "Primary architecture for core processing." }
+                owner: { type: string, example: "60d0fe4f5311236168a109ca" }
+      responses:
+        201:
+          description: Project created
+
+  /tasks:
+    get:
+      summary: Fetch all tasks (The Bridge)
+      tags: [Tasks]
+      responses:
+        200:
+          description: List of tasks
+    post:
+      summary: Create a new task
+      tags: [Tasks]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, project]
+              properties:
+                title: { type: string, example: "Optimize Memory Vault" }
+                project: { type: string, example: "60d0fe4f5311236168a109ca" }
+                status: { type: string, enum: [todo, in-progress, completed] }
+      responses:
+        201:
+          description: Task created
