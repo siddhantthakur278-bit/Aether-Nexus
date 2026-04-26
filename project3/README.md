@@ -10,9 +10,35 @@ A specialized microservice for **Decode Labs** focused on **Relational Geometry*
 
 ## 📊 Relational Geometry
 This engine maps the complex interconnections of the digital world:
-- **One-to-Many**: Projects act as containers for multiple Tasks.
-- **Many-to-Many**: Tasks are tagged with shared Labels (Project/Tag linkage).
-- **Referential Integrity**: Every Task is "bound by keys" (ObjectIDs) to its parent Project.
+
+```mermaid
+erDiagram
+    USER ||--o{ PROJECT : "owns (1:N)"
+    PROJECT ||--o{ TASK : "contains (1:N)"
+    TASK }o--o{ LABEL : "tagged (M:N)"
+    
+    USER {
+        string _id PK
+        string email UNIQUE
+        string role "Admin/User"
+    }
+    PROJECT {
+        string _id PK
+        string name UNIQUE
+        objectId owner FK
+    }
+    TASK {
+        string _id PK
+        string title
+        string status "todo/in-progress"
+        objectId project FK
+    }
+    LABEL {
+        string _id PK
+        string name UNIQUE
+        string color
+    }
+```
 
 ## 📜 API Documentation
 Interactive Swagger documentation for all CRUD operations:

@@ -10,6 +10,21 @@ Built with a premium, state-of-the-art aesthetic:
 
 ## 📡 Live Integration (Interconnectedness)
 This dashboard is not static; it is the **System Communicator**:
+
+```mermaid
+sequenceDiagram
+    participant P1 as Dashboard (P1)
+    participant P2 as Gateway (P2)
+    participant P3 as Task Engine (P3)
+    
+    Note over P1: Every 10s
+    P1->>P2: GET /api/v1/stats
+    P2-->>P1: { users, latency }
+    Note over P1: Every 15s
+    P1->>P3: GET /health
+    P3-->>P1: { status: "ONLINE" }
+```
+
 1. **Gateway Pulse**: Every 10 seconds, it fetches real-time telemetry from **Project 2** (User counts, System Latency).
 2. **Neural Engine Monitor**: Every 15 seconds, it pings the **Project 3** health-check endpoint.
 3. **Unified Navigation**: Features a global sidebar that bridges the gap between the Command Center and the Identity Gateway (P4).

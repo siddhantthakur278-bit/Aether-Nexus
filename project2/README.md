@@ -3,6 +3,21 @@
 The central intelligence and security node of **Decode Labs**. This project implements the **Gatekeeper Protocol** to protect the ecosystem from the "Default Threat."
 
 ## 🛡️ The Gatekeeper Protocol
+This service implements a multi-layered perimeter defense strategy to protect the ecosystem.
+
+```mermaid
+flowchart TD
+    REQ[Incoming Request] --> RL[Rate Limiter]
+    RL -->|Pass| SEC[Helmet Security Headers]
+    SEC --> VAL[Joi Syntactic Validation]
+    VAL -->|Valid| AUTH[JWT Semantic Verification]
+    AUTH -->|Authorized| CTRL[Controller Action]
+    
+    VAL -->|Invalid| ERR[400 Bad Request]
+    AUTH -->|Denied| FORB[403 Forbidden]
+    RL -->|Spam| LMT[429 Too Many Requests]
+```
+
 1. **AuthN (Authentication)**: Secure identity verification using **JWT (JSON Web Tokens)** and **Bcrypt** password hashing.
 2. **AuthZ (Authorization)**: Role-Based Access Control (RBAC) ensuring only "Admin" identities can modify core blueprints.
 3. **Syntactic Validation**: Utilizing **Joi** at the perimeter to inspect every incoming payload for structural integrity.

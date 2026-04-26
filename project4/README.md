@@ -3,6 +3,19 @@
 The frontline interface for the **Decode Labs** ecosystem, engineered to implement the **Architecture of Trust**.
 
 ## 🏗️ The IPO Pipeline
+This interface transforms raw human input into secure architectural payloads.
+
+```mermaid
+flowchart LR
+    INP[User Input] --> SKEL[Semantic Skeleton]
+    SKEL --> EVT[Submit Event]
+    EVT --> PREV[preventDefault Shield]
+    PREV --> SCAN[Regex Scanner]
+    SCAN -->|Reject| COMM[Communicator Feedback]
+    SCAN -->|Approve| PAY[JSON Payload]
+    PAY --> TRANS[Gateway Transmission]
+```
+
 1. **Input (Structure)**: A semantic skeleton built with HTML5. No "haphazard divs"—only strict `<form>`, `<label>`, and `<input>` tags.
 2. **Process (The Gatekeeper)**: Advanced JavaScript logic gates and **Regex Inspectors** that screen every character.
 3. **Output (The Communicator)**: Dynamic, accessible UI feedback linked through the **Accessibility Tether**.
